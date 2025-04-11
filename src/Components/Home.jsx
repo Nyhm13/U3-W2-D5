@@ -1,4 +1,11 @@
-import { CardBody, CardText, Col, Container, Row } from "react-bootstrap";
+import {
+  Alert,
+  CardBody,
+  CardText,
+  Col,
+  Container,
+  Row,
+} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
@@ -124,8 +131,16 @@ const Home = (props) => {
         </Card>
       ) : (
         <div className="text-white text-center mt-5">
-          <h1>EpiMeteo</h1>
-          <p className="h2">Inserisci una città per vedere il meteo.</p>
+          <Alert variant="success" className=" bg-transparent border-0">
+            <Alert.Heading>
+              <h1> Benvenuto su EpiMeteo, un meteo wannabe</h1>
+            </Alert.Heading>
+            <hr />
+            <p className="h2">
+              Inserisci una città nella search bar in alto a destra per vedere
+              il meteo per la città che ti interessa.
+            </p>
+          </Alert>
         </div>
       )}
     </div>
