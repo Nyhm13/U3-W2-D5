@@ -123,9 +123,9 @@ const Home = (props) => {
           </Row>
         </Card>
       ) : (
-        <div className="text-white text-center">
+        <div className="text-white text-center mt-5">
           <h1>EpiMeteo</h1>
-          <p>Inserisci una città per vedere il meteo.</p>
+          <p className="h2">Inserisci una città per vedere il meteo.</p>
         </div>
       )}
     </div>

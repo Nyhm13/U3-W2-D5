@@ -42,7 +42,7 @@ const Dettagli = (props) => {
         .catch((err) => {
           console.log("errore", err);
           setError(true);
-          setIsLoading(true);
+          setIsLoading(false);
         });
     };
     fetchForecast();
@@ -57,9 +57,9 @@ const Dettagli = (props) => {
         </div>
       )}
       {error && (
-        <div className="text-center">
-          <img src="/previsioni.png" alt="" />
-        </div>
+        <Container fluid className="text-center">
+          <img src="/previsioni.png" alt="" className=" img-fluid" />
+        </Container>
       )}
       {forecastData ? (
         <Container>
@@ -68,31 +68,39 @@ const Dettagli = (props) => {
             {forecastData.list.slice(0, 12).map((forecast, index) => {
               return (
                 <Col key={index} sm={12} md={6} lg={4} className="mb-4">
-                  <Card className="glass-card-dettagli">
+                  <Card className="glass-card-dettagli bg-transparent">
                     <Card.Body
                       className={getBackgroundClass(
                         forecast.weather[0].description
                       )}
                     >
                       <Card.Title>
-                        <strong>{forecast.dt_txt}</strong>
+                        <strong className="fs-4">{forecast.dt_txt}</strong>
                       </Card.Title>
                       <Card.Text>
                         <p className="mb-0">
-                          <strong>Temperatura prevista:</strong>{" "}
-                          {forecast.main.temp}°C
+                          <strong className="fs-4">
+                            Temperatura prevista:
+                          </strong>
+                          <span className="fs-4">{forecast.main.temp}°C</span>
                         </p>
                         <p className="mb-0">
-                          <strong>Minima prevista </strong>:{" "}
-                          {forecast.main.temp_min}°C
+                          <strong className="fs-4">Minima prevista </strong>
+                          <span className="fs-4">
+                            {forecast.main.temp_min}°C
+                          </span>
+                        </p>
+                        <p className="mb-0 fs-4">
+                          <strong className="fs-4">Massima prevista </strong>
+                          <span className="fs-4">
+                            {forecast.main.temp_max}°C
+                          </span>
                         </p>
                         <p className="mb-0">
-                          <strong>Massima prevista </strong>:{" "}
-                          {forecast.main.temp_max}°C
-                        </p>
-                        <p className="mb-0">
-                          <strong>Previsto/e:</strong>{" "}
-                          {forecast.weather[0].description}
+                          <strong className="fs-4">Previsto/e:</strong>
+                          <span className="fs-4">
+                            {forecast.weather[0].description}
+                          </span>
                         </p>
                       </Card.Text>
                     </Card.Body>
