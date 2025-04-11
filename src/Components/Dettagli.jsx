@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 
 const Dettagli = (props) => {
   const [forecastData, setForecastData] = useState(null);
@@ -42,6 +42,7 @@ const Dettagli = (props) => {
         .catch((err) => {
           console.log("errore", err);
           setError(true);
+          setIsLoading(true);
         });
     };
     fetchForecast();
@@ -49,9 +50,16 @@ const Dettagli = (props) => {
 
   return (
     <div>
-      {isLoading && <p>Caricamento...</p>}
+      {isLoading && (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+          <p className="fs-2">Attendere prego...</p>
+        </div>
+      )}
       {error && (
-        <p className="text-danger text-center fs-1">sono caduto malato</p>
+        <div className="text-center">
+          <img src="/previsioni.png" alt="" />
+        </div>
       )}
       {forecastData ? (
         <Container>
@@ -95,7 +103,9 @@ const Dettagli = (props) => {
           </Row>
         </Container>
       ) : (
-        !isLoading && <p className=" text-center">Nessun dato disponibile.</p>
+        !isLoading && (
+          <p className=" text-center h1">Nessun dato disponibile.</p>
+        )
       )}
     </div>
   );
